@@ -1,0 +1,10 @@
+<root BTCPP_format="4">
+  <BehaviorTree>
+    <Sequence>
+      <ReceiveString name="A"/>
+      <ReceiveInt name="B"/>
+      <ReceiveString name="C"/>
+      <ReceiveInt name="D"/>
+    </Sequence>
+  </BehaviorTree>
+</root>

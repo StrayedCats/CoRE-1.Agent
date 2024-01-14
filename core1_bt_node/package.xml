@@ -1,0 +1,18 @@
+<package format="3">
+  <name>core1_bt_node</name>
+  <version>0.0.0</version>
+  <description>Behavior Tree v4 for CoRE-1</description>
+
+  <maintainer email="ray255ar@gmail.com">Ar-Ray-code</maintainer>
+  <license>Apache License 2.0</license>
+
+  <buildtool_depend>ament_cmake_auto</buildtool_depend>
+
+  <depend>ament_index_cpp</depend>
+  <depend>core1_bt_libs</depend>
+
+<export>
+  <build_type>ament_cmake</build_type>
+</export>
+
+</package>
