@@ -18,15 +18,13 @@
 int main(int argc, char **argv)
 {
   rclcpp::init(argc, argv);
-  auto nh = std::make_shared<rclcpp::Node>("subscriber_test");
-
-  std::string pkgpath = ament_index_cpp::get_package_share_directory("core1_bt_node");
-  std::string xml_filepath = pkgpath + "/trees/test.xml";
+  auto nh = std::make_shared<rclcpp::Node>("core1_bt_node");
+  std::string xml_filepath = ament_index_cpp::get_package_share_directory("core1_bt_node") + "/trees/test.xml";
   RCLCPP_INFO(nh->get_logger(), "Loading XML file from: %s", xml_filepath.c_str());
 
   BT::BehaviorTreeFactory factory;
-
   BT::RosNodeParams params;
+
   params.nh = nh;
   params.default_port_value = "btcpp_string";
   factory.registerNodeType<core1_bt_libs::SubString>("ReceiveString", params);

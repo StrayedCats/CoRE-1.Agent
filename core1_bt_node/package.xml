@@ -8,8 +8,7 @@
 
   <buildtool_depend>ament_cmake_auto</buildtool_depend>
 
-  <depend>std_msgs</depend>
-  <depend>rclcpp</depend>
+  <depend>ament_index_cpp</depend>
   <depend>core1_bt_libs</depend>
 
 <export>
