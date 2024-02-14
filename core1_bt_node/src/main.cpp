@@ -26,11 +26,14 @@ int main(int argc, char **argv)
   BT::RosNodeParams params;
 
   params.nh = nh;
-  params.default_port_value = "btcpp_string";
+  params.default_port_value = "result";
   factory.registerNodeType<core1_bt_libs::SubString>("ReceiveString", params);
 
   params.default_port_value = "btcpp_int";
   factory.registerNodeType<core1_bt_libs::SubInt>("ReceiveInt", params);
+
+  params.default_port_value = "restart_trigger";
+  factory.registerNodeType<core1_bt_libs::SubEmpty>("RestartTrigger", params);
 
   auto tree = factory.createTreeFromFile(xml_filepath);
 

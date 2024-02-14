@@ -14,7 +14,17 @@
 
 #pragma once
 
-#include "sub_int.hpp"
-#include "sub_string.hpp"
-#include "sub_bool.hpp"
-#include "sub_empty.hpp"
+#include <behaviortree_ros2/bt_topic_sub_node.hpp>
+#include <std_msgs/msg/bool.hpp>
+
+namespace core1_bt_libs
+{
+
+class SubBool: public BT::RosTopicSubNode<std_msgs::msg::Bool>
+{
+public:
+  SubBool(const std::string& name, const BT::NodeConfig& conf, const BT::RosNodeParams& params);
+  static BT::PortsList providedPorts();
+  BT::NodeStatus onTick(const std::shared_ptr<std_msgs::msg::Bool>& last_msg) override;
+};
+}  // namespace core1_bt_libs

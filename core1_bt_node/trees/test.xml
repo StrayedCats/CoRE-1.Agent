@@ -1,10 +1,19 @@
 <root BTCPP_format="4">
   <BehaviorTree>
     <Sequence>
-      <ReceiveString name="A"/>
-      <ReceiveInt name="B"/>
-      <ReceiveString name="C"/>
-      <ReceiveInt name="D"/>
+      <Fallback>
+        <Sequence>
+          <ReceiveString name="VQA_PERSON"/>
+          <ReceiveInt name="B"/>
+          <ReceiveInt name="D"/>
+        </Sequence>
+        <Sequence>
+          <ReceiveString name="C"/>
+        </Sequence>
+      </Fallback>
+      <RetryUntilSuccessful num_attempts="1000000">
+        <RestartTrigger name="restart_trigger"/>
+      </RetryUntilSuccessful>
     </Sequence>
   </BehaviorTree>
 </root>
