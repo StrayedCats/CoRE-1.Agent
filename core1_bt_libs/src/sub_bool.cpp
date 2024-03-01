@@ -17,7 +17,9 @@
 namespace core1_bt_libs
 {
 
-SubBool::SubBool(const std::string& name, const BT::NodeConfig& conf, const BT::RosNodeParams& params)
+SubBool::SubBool(
+  const std::string & name, const BT::NodeConfig & conf,
+  const BT::RosNodeParams & params)
 : BT::RosTopicSubNode<std_msgs::msg::Bool>(name, conf, params)
 {}
 
@@ -26,17 +28,15 @@ BT::PortsList SubBool::providedPorts()
   return {};
 }
 
-BT::NodeStatus SubBool::onTick(const std::shared_ptr<std_msgs::msg::Bool>& last_msg)
+BT::NodeStatus SubBool::onTick(const std::shared_ptr<std_msgs::msg::Bool> & last_msg)
 {
-  if(last_msg)
-  {
-    if (last_msg->data)
+  if (last_msg) {
+    if (last_msg->data) {
       RCLCPP_INFO(logger(), "[True] new message: %d", last_msg->data);
-    else
+    } else {
       RCLCPP_INFO(logger(), "[False] new message: %d", last_msg->data);
-  }
-  else
-  {
+    }
+  } else {
     RCLCPP_INFO(logger(), "[%s] no message", name().c_str());
     return BT::NodeStatus::FAILURE;
   }

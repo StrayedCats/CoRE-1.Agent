@@ -17,7 +17,9 @@
 namespace core1_bt_libs
 {
 
-SubEmpty::SubEmpty(const std::string& name, const BT::NodeConfig& conf, const BT::RosNodeParams& params)
+SubEmpty::SubEmpty(
+  const std::string & name, const BT::NodeConfig & conf,
+  const BT::RosNodeParams & params)
 : BT::RosTopicSubNode<std_msgs::msg::Empty>(name, conf, params)
 {}
 
@@ -26,10 +28,9 @@ BT::PortsList SubEmpty::providedPorts()
   return {};
 }
 
-BT::NodeStatus SubEmpty::onTick(const std::shared_ptr<std_msgs::msg::Empty>& last_msg)
+BT::NodeStatus SubEmpty::onTick(const std::shared_ptr<std_msgs::msg::Empty> & last_msg)
 {
-  if(last_msg)
-  {
+  if (last_msg) {
     RCLCPP_INFO(logger(), "get empty message");
     std::this_thread::sleep_for(std::chrono::milliseconds(1000));
     return BT::NodeStatus::SUCCESS;

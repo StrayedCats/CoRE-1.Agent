@@ -20,11 +20,13 @@
 namespace core1_bt_libs
 {
 
-class SubString: public BT::RosTopicSubNode<std_msgs::msg::String>
+class SubString : public BT::RosTopicSubNode<std_msgs::msg::String>
 {
 public:
-  SubString(const std::string& name, const BT::NodeConfig& conf, const BT::RosNodeParams& params);
+  SubString(
+    const std::string & name, const BT::NodeConfig & conf,
+    const BT::RosNodeParams & params);
   static BT::PortsList providedPorts();
-  BT::NodeStatus onTick(const std::shared_ptr<std_msgs::msg::String>& last_msg) override;
+  BT::NodeStatus onTick(const std::shared_ptr<std_msgs::msg::String> & last_msg) override;
 };
 }  // namespace core1_bt_libs

@@ -10,6 +10,8 @@ ament_auto_find_build_dependencies()
 
 ament_auto_add_executable(main src/main.cpp)
 
+ament_auto_add_executable(example_action_server src/example_action_server.cpp)
+
 ament_auto_package(INSTALL_TO_SHARE
   trees
 )

@@ -3,6 +3,7 @@
     <Sequence>
       <Fallback>
         <Sequence>
+          <ExampleActionClient name="Example" msec="2000"/>
           <ReceiveString name="VQA_PERSON"/>
           <ReceiveInt name="B"/>
           <ReceiveInt name="D"/>

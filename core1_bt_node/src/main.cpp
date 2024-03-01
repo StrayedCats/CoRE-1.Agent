@@ -15,11 +15,12 @@
 #include <ament_index_cpp/get_package_share_directory.hpp>
 #include <core1_bt_libs/core1_bt_libs.hpp>
 
-int main(int argc, char **argv)
+int main(int argc, char ** argv)
 {
   rclcpp::init(argc, argv);
   auto nh = std::make_shared<rclcpp::Node>("core1_bt_node");
-  std::string xml_filepath = ament_index_cpp::get_package_share_directory("core1_bt_node") + "/trees/test.xml";
+  std::string xml_filepath = ament_index_cpp::get_package_share_directory("core1_bt_node") +
+    "/trees/test.xml";
   RCLCPP_INFO(nh->get_logger(), "Loading XML file from: %s", xml_filepath.c_str());
 
   BT::BehaviorTreeFactory factory;
@@ -35,10 +36,12 @@ int main(int argc, char **argv)
   params.default_port_value = "restart_trigger";
   factory.registerNodeType<core1_bt_libs::SubEmpty>("RestartTrigger", params);
 
+  params.default_port_value = "sleep_service";
+  factory.registerNodeType<core1_bt_libs::ExampleActionClient>("ExampleActionClient", params);
+
   auto tree = factory.createTreeFromFile(xml_filepath);
 
-  while(rclcpp::ok())
-  {
+  while (rclcpp::ok()) {
     tree.tickWhileRunning();
   }
 
