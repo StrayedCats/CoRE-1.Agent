@@ -3,8 +3,7 @@
     <Sequence>
       <Fallback>
         <Sequence>
-          <ExampleActionClient name="Example" msec="2000"/>
-          <ReceiveString name="VQA_PERSON"/>
+          <GetAnglesActionClient name="get_angle" root_tf="base_frame" camera_tf="camera_color_frame" target_tf="tag36h11:4" />
           <ReceiveInt name="B"/>
           <ReceiveInt name="D"/>
         </Sequence>
@@ -12,9 +11,6 @@
           <ReceiveString name="C"/>
         </Sequence>
       </Fallback>
-      <RetryUntilSuccessful num_attempts="1000000">
-        <RestartTrigger name="restart_trigger"/>
-      </RetryUntilSuccessful>
     </Sequence>
   </BehaviorTree>
 </root>

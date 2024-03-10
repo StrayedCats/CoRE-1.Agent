@@ -39,6 +39,9 @@ int main(int argc, char ** argv)
   params.default_port_value = "sleep_service";
   factory.registerNodeType<core1_bt_libs::ExampleActionClient>("ExampleActionClient", params);
 
+  params.default_port_value = "tf_to_position";
+  factory.registerNodeType<core1_bt_libs::GetAnglesActionClient>("GetAnglesActionClient", params);
+
   auto tree = factory.createTreeFromFile(xml_filepath);
 
   while (rclcpp::ok()) {

@@ -19,3 +19,4 @@
 #include "sub_bool.hpp"
 #include "sub_empty.hpp"
 #include "example_action_client.hpp"
+#include "get_angles_action_client.hpp"

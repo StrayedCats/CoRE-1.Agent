@@ -8,9 +8,10 @@
 
   <buildtool_depend>ament_cmake_auto</buildtool_depend>
 
+  <depend>auto_driver_msgs</depend>
   <depend>behaviortree_ros2</depend>
-  <depend>std_msgs</depend>
   <depend>core1_agent_msgs</depend>
+  <depend>std_msgs</depend>
 
 <export>
   <build_type>ament_cmake</build_type>
