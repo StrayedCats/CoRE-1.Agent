@@ -4,11 +4,11 @@
       <Fallback>
         <Sequence>
           <GetAnglesActionClient name="get_angle" root_tf="base_frame" camera_tf="camera_color_frame" target_tf="tag36h11:4" yaw_gap="{yaw_gap}" pitch_gap="{pitch_gap}" yaw="{yaw}" pitch="{pitch}" />
-          <!-- <SetAnglesActionClient name="set_angle" yaw="{yaw}" pitch="{pitch}" yaw_gap="{yaw_gap}" pitch_gap="{pitch_gap}" /> -->
-          <SetAnglesActionClient name="set_angle" yaw="180" pitch="90" yaw_gap="0" pitch_gap="0" />
-          <SetAnglesActionClient name="set_angle" yaw="135" pitch="50" yaw_gap="0" pitch_gap="0" />
-          <SetAnglesActionClient name="set_angle" yaw="180" pitch="90" yaw_gap="0" pitch_gap="0" />
-          <SetAnglesActionClient name="set_angle" yaw="225" pitch="110" yaw_gap="0" pitch_gap="0" />
+          <SetAnglesActionClient yaw="{yaw}" pitch="{pitch}" yaw_gap="{yaw_gap}" pitch_gap="{pitch_gap}" />
+          <!-- <SetAnglesActionClient yaw="180" pitch="90" yaw_gap="0" pitch_gap="0" />
+          <SetAnglesActionClient yaw="135" pitch="50" yaw_gap="0" pitch_gap="0" />
+          <SetAnglesActionClient yaw="180" pitch="90" yaw_gap="0" pitch_gap="0" />
+          <SetAnglesActionClient yaw="225" pitch="110" yaw_gap="0" pitch_gap="0" /> -->
           <ReceiveInt name="D"/>
         </Sequence>
         <Sequence>

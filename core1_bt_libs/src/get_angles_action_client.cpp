@@ -28,15 +28,15 @@ GetAnglesActionClient::GetAnglesActionClient(
 
 BT::PortsList GetAnglesActionClient::providedPorts()
 {
-  return providedBasicPorts({
+  return {
       InputPort<std::string>("root_tf"),
       InputPort<std::string>("camera_tf"),
       InputPort<std::string>("target_tf"),
-      OutputPort<unsigned>("yaw"),
-      OutputPort<unsigned>("pitch"),
-      OutputPort<unsigned>("yaw_gap"),
-      OutputPort<unsigned>("pitch_gap"),
-    });
+      OutputPort<int32_t>("yaw"),
+      OutputPort<int32_t>("pitch"),
+      OutputPort<int32_t>("yaw_gap"),
+      OutputPort<int32_t>("pitch_gap"),
+    };
 }
 
 bool GetAnglesActionClient::setGoal(RosActionNode::Goal & goal)
@@ -81,5 +81,3 @@ void GetAnglesActionClient::onHalt()
 }
 
 }  // namespace core1_bt_libs
-
-CreateRosNodePlugin(core1_bt_libs::GetAnglesActionClient, "GetAnglesActionClient");

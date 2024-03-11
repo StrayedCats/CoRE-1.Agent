@@ -28,24 +28,22 @@ SetAnglesActionClient::SetAnglesActionClient(
 
 BT::PortsList SetAnglesActionClient::providedPorts()
 {
-  return providedBasicPorts({
-      InputPort<unsigned>("yaw"),
-      InputPort<unsigned>("pitch"),
-      InputPort<unsigned>("yaw_gap"),
-      InputPort<unsigned>("pitch_gap"),
-    });
+  return {
+      InputPort<int32_t>("yaw"),
+      InputPort<int32_t>("pitch"),
+      InputPort<int32_t>("yaw_gap"),
+      InputPort<int32_t>("pitch_gap"),
+    };
 }
 
 bool SetAnglesActionClient::setGoal(RosActionNode::Goal & goal)
 {
   RCLCPP_INFO(node_->get_logger(), "SetAnglesActionClient: setGoal");
-  auto yaw = getInput<unsigned>("yaw");
-  auto pitch = getInput<unsigned>("pitch");
-  auto yaw_gap = getInput<unsigned>("yaw_gap");
-  auto pitch_gap = getInput<unsigned>("pitch_gap");
+  auto yaw = getInput<int32_t>("yaw");
+  auto pitch = getInput<int32_t>("pitch");
+  auto yaw_gap = getInput<int32_t>("yaw_gap");
+  auto pitch_gap = getInput<int32_t>("pitch_gap");
 
-  // goal.yaw_deg = yaw + yaw_gap;
-  // goal.pitch_deg = pitch + pitch_gap;
   goal.yaw_deg = yaw.value() + yaw_gap.value();
   goal.pitch_deg = pitch.value() + pitch_gap.value();
   goal.msec = 1000;
@@ -72,6 +70,3 @@ void SetAnglesActionClient::onHalt()
 }
 
 }  // namespace core1_bt_libs
-
-
-CreateRosNodePlugin(core1_bt_libs::SetAnglesActionClient, "SetAnglesActionClient");
