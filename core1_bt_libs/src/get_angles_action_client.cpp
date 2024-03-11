@@ -15,6 +15,7 @@
 // Ref: https://github.com/BehaviorTree/BehaviorTree.ROS2 (Apache-2.0 license)
 
 #include "core1_bt_libs/get_angles_action_client.hpp"
+#include "behaviortree_ros2/plugins.hpp"
 
 namespace core1_bt_libs
 {
@@ -32,7 +33,9 @@ BT::PortsList GetAnglesActionClient::providedPorts()
       InputPort<std::string>("camera_tf"),
       InputPort<std::string>("target_tf"),
       OutputPort<unsigned>("yaw"),
-      OutputPort<unsigned>("pitch")
+      OutputPort<unsigned>("pitch"),
+      OutputPort<unsigned>("yaw_gap"),
+      OutputPort<unsigned>("pitch_gap"),
     });
 }
 
@@ -55,10 +58,13 @@ bool GetAnglesActionClient::setGoal(RosActionNode::Goal & goal)
 
 NodeStatus GetAnglesActionClient::onResultReceived(const RosActionNode::WrappedResult & wr)
 {
-  RCLCPP_INFO(node_->get_logger(), "yaw: %d, pitch: %d", wr.result->yaw_deg, wr.result->pitch_deg);
+  RCLCPP_INFO(node_->get_logger(), "yaw: %d, pitch: %d, yaw_gap: %d, pitch_gap: %d",
+    wr.result->yaw_deg, wr.result->pitch_deg, wr.result->yaw_gap_deg, wr.result->pitch_gap_deg);
 
   setOutput("yaw", wr.result->yaw_deg);
   setOutput("pitch", wr.result->pitch_deg);
+  setOutput("yaw_gap", wr.result->yaw_gap_deg);
+  setOutput("pitch_gap", wr.result->pitch_gap_deg);
 
   return wr.result->succeed ? NodeStatus::SUCCESS : NodeStatus::FAILURE;
 }
@@ -75,3 +81,5 @@ void GetAnglesActionClient::onHalt()
 }
 
 }  // namespace core1_bt_libs
+
+CreateRosNodePlugin(core1_bt_libs::GetAnglesActionClient, "GetAnglesActionClient");

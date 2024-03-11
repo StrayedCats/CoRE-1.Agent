@@ -18,17 +18,17 @@
 
 #include "behaviortree_cpp/bt_factory.h"
 #include <behaviortree_ros2/bt_action_node.hpp>
-#include "auto_driver_msgs/action/get_angles_from_tf.hpp"
+#include "auto_driver_msgs/action/move_to_target_deg.hpp"
 
 namespace core1_bt_libs
 {
 
 using namespace BT;
 
-class GetAnglesActionClient : public BT::RosActionNode<auto_driver_msgs::action::GetAnglesFromTf>
+class SetAnglesActionClient : public BT::RosActionNode<auto_driver_msgs::action::MoveToTargetDeg>
 {
 public:
-  GetAnglesActionClient(
+  SetAnglesActionClient(
     const std::string & name, const BT::NodeConfig & conf,
     const BT::RosNodeParams & params);
   static BT::PortsList providedPorts();

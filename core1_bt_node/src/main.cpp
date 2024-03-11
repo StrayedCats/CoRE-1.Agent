@@ -42,6 +42,9 @@ int main(int argc, char ** argv)
   params.default_port_value = "tf_to_position";
   factory.registerNodeType<core1_bt_libs::GetAnglesActionClient>("GetAnglesActionClient", params);
 
+  params.default_port_value = "move_to_target_deg";
+  factory.registerNodeType<core1_bt_libs::SetAnglesActionClient>("SetAnglesActionClient", params);
+
   auto tree = factory.createTreeFromFile(xml_filepath);
 
   while (rclcpp::ok()) {
