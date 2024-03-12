@@ -52,6 +52,8 @@ bool GetAnglesActionClient::setGoal(RosActionNode::Goal & goal)
   goal.root_tf_frame_id = root_tf.value();
   goal.camera_tf_frame_id = camera_tf.value();
   goal.target_tf_frame_id = target_tf.value();
+  RCLCPP_INFO(node_->get_logger(), "root_tf: %s, camera_tf: %s, target_tf: %s",
+    goal.root_tf_frame_id.c_str(), goal.camera_tf_frame_id.c_str(), goal.target_tf_frame_id.c_str());
 
   return true;
 }

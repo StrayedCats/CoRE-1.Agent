@@ -33,21 +33,22 @@ BT::PortsList SetAnglesActionClient::providedPorts()
       InputPort<int32_t>("pitch"),
       InputPort<int32_t>("yaw_gap"),
       InputPort<int32_t>("pitch_gap"),
+      InputPort<int32_t>("msec"),
     };
 }
 
 bool SetAnglesActionClient::setGoal(RosActionNode::Goal & goal)
 {
   RCLCPP_INFO(node_->get_logger(), "SetAnglesActionClient: setGoal");
-  auto yaw = getInput<int32_t>("yaw");
+  auto camera2target = getInput<int32_t>("yaw");
   auto pitch = getInput<int32_t>("pitch");
-  auto yaw_gap = getInput<int32_t>("yaw_gap");
+  auto base2camera_yaw = getInput<int32_t>("yaw_gap");
   auto pitch_gap = getInput<int32_t>("pitch_gap");
+  auto msec = getInput<int32_t>("msec");
 
-  goal.yaw_deg = yaw.value() + yaw_gap.value();
-  goal.pitch_deg = pitch.value() + pitch_gap.value();
-  goal.msec = 1000;
-  RCLCPP_INFO(node_->get_logger(), "SetAnglesActionClient: setGoal: yaw: %d, pitch: %d", goal.yaw_deg, goal.pitch_deg);
+  goal.yaw_deg = (180 + base2camera_yaw.value()) + (camera2target.value() - base2camera_yaw.value());
+  goal.pitch_deg = pitch.value() + 90 + pitch_gap.value();
+  goal.msec = msec.value();
   return true;
 }
 
