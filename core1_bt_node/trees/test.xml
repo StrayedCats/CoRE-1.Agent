@@ -3,8 +3,8 @@
     <Sequence>
       <Fallback>
         <Sequence>
-          <GetAnglesActionClient name="get_angle" root_tf="base_frame" camera_tf="camera_color_frame" target_tf="tag36h11:4" yaw_gap="{yaw_gap}" pitch_gap="{pitch_gap}" yaw="{yaw}" pitch="{pitch}" />
-          <SetAnglesActionClient yaw="{yaw}" pitch="{pitch}" yaw_gap="{yaw_gap}" pitch_gap="{pitch_gap}" msec="500" />
+          <GetAnglesActionClient name="get_angle" root_tf="base_frame" camera_tf="camera_color_frame" target_tf="tag36h11:4" yaw="{yaw}" pitch="{pitch}" />
+          <SetAnglesActionClient yaw="{yaw}" pitch="{pitch}" msec="1000" />
           <!-- <SetAnglesActionClient yaw="180" pitch="90" yaw_gap="0" pitch_gap="0" />
           <SetAnglesActionClient yaw="135" pitch="50" yaw_gap="0" pitch_gap="0" />
           <SetAnglesActionClient yaw="180" pitch="90" yaw_gap="0" pitch_gap="0" />

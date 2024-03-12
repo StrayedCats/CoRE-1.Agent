@@ -34,8 +34,6 @@ BT::PortsList GetAnglesActionClient::providedPorts()
       InputPort<std::string>("target_tf"),
       OutputPort<int32_t>("yaw"),
       OutputPort<int32_t>("pitch"),
-      OutputPort<int32_t>("yaw_gap"),
-      OutputPort<int32_t>("pitch_gap"),
     };
 }
 
@@ -60,13 +58,10 @@ bool GetAnglesActionClient::setGoal(RosActionNode::Goal & goal)
 
 NodeStatus GetAnglesActionClient::onResultReceived(const RosActionNode::WrappedResult & wr)
 {
-  RCLCPP_INFO(node_->get_logger(), "yaw: %d, pitch: %d, yaw_gap: %d, pitch_gap: %d",
-    wr.result->yaw_deg, wr.result->pitch_deg, wr.result->yaw_gap_deg, wr.result->pitch_gap_deg);
+  RCLCPP_INFO(node_->get_logger(), "yaw: %d, pitch: %d", wr.result->yaw_deg, wr.result->pitch_deg);
 
   setOutput("yaw", wr.result->yaw_deg);
   setOutput("pitch", wr.result->pitch_deg);
-  setOutput("yaw_gap", wr.result->yaw_gap_deg);
-  setOutput("pitch_gap", wr.result->pitch_gap_deg);
 
   return wr.result->succeed ? NodeStatus::SUCCESS : NodeStatus::FAILURE;
 }
