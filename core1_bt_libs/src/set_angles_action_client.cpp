@@ -42,8 +42,8 @@ bool SetAnglesActionClient::setGoal(RosActionNode::Goal & goal)
   auto camera2target_pitch = getInput<int32_t>("pitch");
   auto msec = getInput<int32_t>("msec");
 
-  goal.yaw_deg = 180 + camera2target_yaw.value();
-  goal.pitch_deg = camera2target_pitch.value();
+  goal.yaw_deg = 180 + camera2target_yaw.value(); // 180 is the offset of the camera (yaw)
+  goal.pitch_deg = 30 + camera2target_pitch.value(); // 30 is the offset of the camera (pitch)
   goal.msec = msec.value();
   return true;
 }
