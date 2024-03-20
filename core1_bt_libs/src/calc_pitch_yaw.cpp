@@ -39,7 +39,7 @@ BT::NodeStatus CalcPitchYaw::onTick(const std::shared_ptr<std_msgs::msg::Empty> 
   auto pose = getInput<geometry_msgs::msg::Pose>("pose").value();
   // use only x, y, z
   auto sqrt_x_y = std::sqrt(pose.position.x * pose.position.x + pose.position.y * pose.position.y);
-  auto pitch = std::atan2(pose.position.z, sqrt_x_y) * 180 / M_PI + 30;
+  auto pitch = std::atan2(pose.position.z, sqrt_x_y) * 180 / M_PI + 15;
   auto yaw = std::atan2(pose.position.y, pose.position.x) * 180 / M_PI - 90;
 
   setOutput("pitch", int32_t(pitch));
