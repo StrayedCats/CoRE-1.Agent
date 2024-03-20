@@ -26,8 +26,8 @@ BT::PortsList CalcPitchYaw::providedPorts()
 {
   return {
     BT::InputPort<geometry_msgs::msg::Pose>("pose"),
-    BT::InputPort<float>("current_pitch"),
-    BT::InputPort<float>("current_yaw"),
+    BT::InputPort<double>("current_pitch"),
+    BT::InputPort<double>("current_yaw"),
     BT::OutputPort<int32_t>("pitch"),
     BT::OutputPort<int32_t>("yaw")
   };
@@ -39,13 +39,14 @@ BT::NodeStatus CalcPitchYaw::onTick(const std::shared_ptr<std_msgs::msg::Empty> 
   auto pose = getInput<geometry_msgs::msg::Pose>("pose").value();
   // use only x, y, z
   auto sqrt_x_y = std::sqrt(pose.position.x * pose.position.x + pose.position.y * pose.position.y);
-  auto pitch = std::atan2(pose.position.z, sqrt_x_y) * 180 / M_PI;
-  auto yaw = std::atan2(pose.position.y, pose.position.x) * 180 / M_PI;;
+  auto pitch = std::atan2(pose.position.z, sqrt_x_y) * 180 / M_PI + 30;
+  auto yaw = std::atan2(pose.position.y, pose.position.x) * 180 / M_PI - 90;
 
   setOutput("pitch", int32_t(pitch));
-  setOutput("yaw", -int32_t(yaw));
+  setOutput("yaw", int32_t(yaw));
 
-  RCLCPP_INFO(node_->get_logger(), "CalcPitchYaw: pitch: %d, yaw: %d", int32_t(pitch), int32_t(yaw));
+  RCLCPP_INFO(node_->get_logger(), "CalcPitchYaw: pitch: %d, yaw: %d, input pitch: %f, input yaw: %f",
+    int32_t(pitch), int32_t(yaw), getInput<double>("current_pitch").value(), getInput<double>("current_yaw").value());
 
 
   return BT::NodeStatus::SUCCESS;

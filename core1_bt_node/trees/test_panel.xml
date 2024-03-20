@@ -3,6 +3,8 @@
     <Sequence>
       <Fallback>
         <Sequence>
+          <GetPitch data="{current_pitch}" />
+          <GetYaw data="{current_yaw}" />
           <SubDetection3dArray name="sub_detection" detection3d_array="{detection3d_array}" />
           <GetEnemyPositionClient name="get_enemy_position" detection3d_array="{detection3d_array}" allies_label="person" enemies_label="bicycle" pose="{pose}" />
           <CalcPitchYaw pose="{pose}" pitch="{pitch}" yaw="{yaw}" current_pitch="{current_pitch}" current_yaw="{current_yaw}" />
