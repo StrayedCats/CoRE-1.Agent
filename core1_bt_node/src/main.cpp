@@ -19,8 +19,14 @@ int main(int argc, char ** argv)
 {
   rclcpp::init(argc, argv);
   auto nh = std::make_shared<rclcpp::Node>("core1_bt_node");
-  std::string xml_filepath = ament_index_cpp::get_package_share_directory("core1_bt_node") +
+
+  std::string default_xml_filepath = ament_index_cpp::get_package_share_directory("core1_bt_node") +
     "/trees/test.xml";
+
+  nh->declare_parameter("bt_xml_path", default_xml_filepath);
+  std::string xml_filepath;
+  nh->get_parameter("bt_xml_path", xml_filepath);
+
   RCLCPP_INFO(nh->get_logger(), "Loading XML file from: %s", xml_filepath.c_str());
 
   BT::BehaviorTreeFactory factory;
@@ -44,6 +50,21 @@ int main(int argc, char ** argv)
 
   params.default_port_value = "move_to_target_deg";
   factory.registerNodeType<core1_bt_libs::SetAnglesActionClient>("SetAnglesActionClient", params);
+
+  params.default_port_value = "tracker/bounding_boxes_3d";
+  factory.registerNodeType<core1_bt_libs::SubDetection3dArray>("SubDetection3dArray", params);
+
+  params.default_port_value = "find_target_pose";
+  factory.registerNodeType<core1_bt_libs::GetEnemyPositionClient>("GetEnemyPositionClient", params);
+
+  params.default_port_value = "calc_pitch_yaw";
+  factory.registerNodeType<core1_bt_libs::CalcPitchYaw>("CalcPitchYaw", params);
+
+  params.default_port_value = "/can_node/gm6020_0/degree";
+  factory.registerNodeType<core1_bt_libs::SubFloat64>("GetPitch", params);
+
+  params.default_port_value = "/can_node/gm6020_1/degree";
+  factory.registerNodeType<core1_bt_libs::SubFloat64>("GetYaw", params);
 
   auto tree = factory.createTreeFromFile(xml_filepath);
 

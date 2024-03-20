@@ -14,16 +14,17 @@
 
 #pragma once
 
-#include "sub_int.hpp"
-#include "sub_string.hpp"
-#include "sub_bool.hpp"
-#include "sub_float64.hpp"
-#include "sub_empty.hpp"
-#include "sub_posearray.hpp"
-#include "sub_detection3darray.hpp"
-#include "example_action_client.hpp"
-#include "get_angles_action_client.hpp"
-#include "get_enemy_position_client.hpp"
-#include "set_angles_action_client.hpp"
-#include "calc_pitch_yaw.hpp"
+#include <behaviortree_ros2/bt_topic_sub_node.hpp>
+#include <vision_msgs/msg/detection3_d_array.hpp>
 
+namespace core1_bt_libs
+{
+
+class SubDetection3dArray : public BT::RosTopicSubNode<vision_msgs::msg::Detection3DArray>
+{
+public:
+  SubDetection3dArray(const std::string & name, const BT::NodeConfig & conf, const BT::RosNodeParams & params);
+  static BT::PortsList providedPorts();
+  BT::NodeStatus onTick(const std::shared_ptr<vision_msgs::msg::Detection3DArray> & last_msg) override;
+};
+}  // namespace core1_bt_libs

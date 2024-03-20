@@ -1,0 +1,17 @@
+<root BTCPP_format="4">
+  <BehaviorTree>
+    <Sequence>
+      <Fallback>
+        <Sequence>
+          <SubDetection3dArray name="sub_detection" detection3d_array="{detection3d_array}" />
+          <GetEnemyPositionClient name="get_enemy_position" detection3d_array="{detection3d_array}" allies_label="person" enemies_label="bicycle" pose="{pose}" />
+          <CalcPitchYaw pose="{pose}" pitch="{pitch}" yaw="{yaw}" current_pitch="{current_pitch}" current_yaw="{current_yaw}" />
+          <SetAnglesActionClient yaw="{yaw}" pitch="{pitch}" msec="1000" />
+        </Sequence>
+        <Sequence>
+          <ReceiveString name="No enemy detected"/>
+        </Sequence>
+      </Fallback>
+    </Sequence>
+  </BehaviorTree>
+</root>

@@ -14,16 +14,18 @@
 
 #pragma once
 
-#include "sub_int.hpp"
-#include "sub_string.hpp"
-#include "sub_bool.hpp"
-#include "sub_float64.hpp"
-#include "sub_empty.hpp"
-#include "sub_posearray.hpp"
-#include "sub_detection3darray.hpp"
-#include "example_action_client.hpp"
-#include "get_angles_action_client.hpp"
-#include "get_enemy_position_client.hpp"
-#include "set_angles_action_client.hpp"
-#include "calc_pitch_yaw.hpp"
+#include <behaviortree_ros2/bt_topic_sub_node.hpp>
+#include <geometry_msgs/msg/pose.hpp>
+#include <std_msgs/msg/empty.hpp>
 
+namespace core1_bt_libs
+{
+
+class CalcPitchYaw : public BT::RosTopicSubNode<std_msgs::msg::Empty>
+{
+public:
+  CalcPitchYaw(const std::string& name, const BT::NodeConfig& config, const BT::RosNodeParams & params);
+  static BT::PortsList providedPorts();
+  BT::NodeStatus onTick(const std::shared_ptr<std_msgs::msg::Empty> & last_msg) override;
+};
+}  // namespace core1_bt_libs

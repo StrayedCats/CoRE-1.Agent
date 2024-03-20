@@ -12,6 +12,9 @@
   <depend>behaviortree_ros2</depend>
   <depend>core1_agent_msgs</depend>
   <depend>std_msgs</depend>
+  <depend>geometry_msgs</depend>
+  <depend>vision_msgs</depend>
+  <depend>core1_bt_action</depend>
 
 <export>
   <build_type>ament_cmake</build_type>
