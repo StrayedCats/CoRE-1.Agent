@@ -8,7 +8,8 @@ find_package(ament_cmake REQUIRED)
 find_package(rosidl_default_generators REQUIRED)
 
 rosidl_generate_interfaces(core1_agent_msgs
-    "action/ExampleTimer.action")
+    "action/ExampleTimer.action"
+    "action/Trigger.action")
 
 ament_export_dependencies(rosidl_default_runtime)
 ament_package()
